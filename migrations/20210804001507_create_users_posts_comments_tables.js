@@ -10,6 +10,7 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table
             .integer('author_id')
+            .unsigned()
             .notNullable()
             .references("id")
             .inTable("users")
@@ -21,6 +22,7 @@ exports.up = function(knex) {
         table.increments('id').primary();
         table
             .integer('post_id')
+            .unsigned()
             .notNullable()
             .references("id")
             .inTable("posts")
@@ -28,12 +30,12 @@ exports.up = function(knex) {
             .onDelete("RESTRICT");
         table
             .integer('commenter_id')
+            .unsigned()
             .notNullable()
             .references("id")
             .inTable("users")
             .onUpdate("RESTRICT")
             .onDelete("RESTRICT");
-        
         table.string('comment_body').notNullable;
     })
 };
