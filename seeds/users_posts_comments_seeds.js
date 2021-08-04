@@ -1,5 +1,6 @@
-// import seed data files, arrays of objects
 const userData = require("../seed_data/users");
+const postData = require("../seed_data/posts");
+const commentData = require("../seed_data/comments");
 
 
 exports.seed = function (knex) {
@@ -13,13 +14,11 @@ exports.seed = function (knex) {
     })
     .then(function () {
       return knex("users").insert(userData);
+    })
+    .then(function () {
+      return knex("posts").insert(postData);
+    })
+    .then(function () {
+      return knex("comments").insert(commentData);
     });
-
-    // .then(function () {
-    //   return knex("posts").insert(postData);
-    // })
-    // .then(function () {
-    //   return knex("comments").insert(commentData);
-    // })
-
 };
